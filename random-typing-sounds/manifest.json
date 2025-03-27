@@ -1,9 +1,12 @@
 {
   "manifest_version": 3,
-  "name": "Key Sound Player",
+  "name": "Number Key Sounds",
   "version": "1.0",
-  "description": "Play sounds on specific key presses",
-  "permissions": [],
+  "description": "Plays a different sound when you press numbers 1 to 9",
+  "permissions": ["storage"],
+  "background": {
+    "service_worker": "background.js"
+  },
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
@@ -12,5 +15,11 @@
   ],
   "action": {
     "default_popup": "popup.html"
-  }
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["sounds/*.mp3"],
+      "matches": ["<all_urls>"]
+    }
+  ]
 }

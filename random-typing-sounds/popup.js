@@ -1,13 +1,14 @@
-const toggleBtn = document.getElementById("toggle");
+let isEnabled = true;
+const toggleButton = document.getElementById("toggle");
 
-chrome.storage.sync.get("enabled", (data) => {
-  toggleBtn.textContent = data.enabled === false ? "Turn ON" : "Turn OFF";
+toggleButton.addEventListener("click", () => {
+  isEnabled = !isEnabled;
+  chrome.storage.sync.set({ soundEnabled: isEnabled });
+  chrome.runtime.sendMessage({ type: "TOGGLE_SOUND", value: isEnabled });
+  toggleButton.textContent = isEnabled ? "Disable" : "Enable";
 });
 
-toggleBtn.addEventListener("click", () => {
-  chrome.storage.sync.get("enabled", (data) => {
-    const newState = data.enabled === false;
-    chrome.storage.sync.set({ enabled: newState });
-    toggleBtn.textContent = newState ? "Turn OFF" : "Turn ON";
-  });
+chrome.storage.sync.get("soundEnabled", (data) => {
+  isEnabled = data.soundEnabled !== false;
+  toggleButton.textContent = isEnabled ? "Disable" : "Enable";
 });
