@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "Random Typing Sounds",
+  "name": "Key Sound Player",
   "version": "1.0",
-  "description": "Play random funny sounds when you type!",
+  "description": "Play specific sounds on every key press!",
   "permissions": ["storage"],
   "content_scripts": [
     {
