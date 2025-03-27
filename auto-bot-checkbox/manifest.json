@@ -1,0 +1,14 @@
+{
+    "manifest_version": 3,
+    "name": "Auto I'm Not a Robot Clicker",
+    "version": "1.0",
+    "description": "Auto-clicks 'I'm not a robot' checkbox if found on page.",
+    "permissions": ["activeTab", "scripting"],
+    "content_scripts": [
+      {
+        "matches": ["<all_urls>"],
+        "js": ["content.js"]
+      }
+    ]
+  }
+  

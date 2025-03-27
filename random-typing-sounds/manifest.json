@@ -2,8 +2,8 @@
   "manifest_version": 3,
   "name": "Key Sound Player",
   "version": "1.0",
-  "description": "Play specific sounds on every key press!",
-  "permissions": ["storage"],
+  "description": "Play sounds on specific key presses",
+  "permissions": [],
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
