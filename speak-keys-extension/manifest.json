@@ -1,5 +1,5 @@
 {
-  "manifest_version": 1,
+  "manifest_version": 3,
   "name": "Speak Keys",
   "version": "1.0",
   "description": "Speaks the key you pressed. Helpful for blind people.",
