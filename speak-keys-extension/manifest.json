@@ -1,12 +1,11 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
   "name": "Speak Keys",
   "version": "1.0",
-  "description": "Speaks the key you pressed. Helpful for blind people.",
+  "description": "Speaks the key you pressed. Useful for blind people.",
   "permissions": ["storage"],
   "background": {
-    "scripts": ["background.js"],
-    "persistent": false
+    "service_worker": "background.js"
   },
   "content_scripts": [
     {
@@ -14,7 +13,7 @@
       "js": ["content.js"]
     }
   ],
-  "browser_action": {
+  "action": {
     "default_popup": "popup.html"
   }
 }

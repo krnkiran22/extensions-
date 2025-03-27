@@ -1,19 +1,20 @@
-const toggleButton = document.getElementById('toggle');
+const btn = document.getElementById("toggleBtn");
 
-chrome.storage.sync.get('enabled', (data) => {
-  updateButton(data.enabled !== false);
+chrome.storage.sync.get(["speakEnabled"], (data) => {
+  const enabled = data.speakEnabled !== false;
+  btn.textContent = enabled ? "Turn OFF" : "Turn ON";
 });
 
-toggleButton.addEventListener('click', () => {
-  chrome.storage.sync.get('enabled', (data) => {
-    const newValue = !data.enabled;
-    chrome.storage.sync.set({ enabled: newValue });
-    updateButton(newValue);
+btn.addEventListener("click", () => {
+  chrome.storage.sync.get(["speakEnabled"], (data) => {
+    const newValue = !(data.speakEnabled !== false);
+    chrome.storage.sync.set({ speakEnabled: newValue });
+    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+      chrome.tabs.sendMessage(tabs[0].id, {
+        type: "TOGGLE_SPEAK",
+        value: newValue
+      });
+    });
+    btn.textContent = newValue ? "Turn OFF" : "Turn ON";
   });
 });
-
-function updateButton(enabled) {
-  toggleButton.textContent = enabled ? 'Turn OFF' : 'Turn ON';
-  toggleButton.style.backgroundColor = enabled ? '#4CAF50' : '#f44336';
-  toggleButton.style.color = 'white';
-}
