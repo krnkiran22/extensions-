@@ -6,6 +6,10 @@ function clickRobotCheckbox() {
       "i am not a robot"
     ];
   
+
+
+
+    
     const elements = document.querySelectorAll("button, input[type='checkbox'], label, div, span");
   
     elements.forEach((el) => {
